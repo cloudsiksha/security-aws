@@ -1,0 +1,7 @@
+aws kms encrypt --region us-east-1 --key-id 8c82b4b0-aded-494b-b21b-477c37b30443 --plaintext file://secrets.json --output text --query CiphertextBlob --cli-binary-format raw-in-base64-out > secrets.base64.json
+
+certutil -decode secrets.base64.json secrets.encrypted.json
+
+aws kms decrypt --region us-east-1 --ciphertext-blob fileb://secrets.encrypted.json --output text --query Plaintext > secrets.decrypted.base64
+
+certutil -decode secrets.decrypted.base64 secrets.decrypted.json

@@ -1,0 +1,28 @@
+aws kms create-key --description "description" --region us-east-1
+aws kms create-alias --target-key-id <keyid>  --alias-name "alias/cloudsiksha" --region us-east-1
+
+aws kms generate-data-key --key-id alias/cloudsiksha --key-spec AES_256 --region us-east-1
+
+Store CiphertextBlob & Plaintext
+
+cat datakey_plaintext_base64.txt | base64 --decode >dakey_plaintext_decoded.txt
+
+echo "Welcome to Cloudsiksha-SpanLabs" | openssl enc -e -aes256 -k fileb://<filepath>  > ./encrypted.txt
+
+Remove the data key
+
+
+------------------------
+
+Decoding
+
+1. Decode Base64
+cat <cipher_file> | base64 --decode >./<filename>
+2. aws kms decrypt --ciphertext-blob fileb://<filepath> --region us-east-1
+
+3. Copy Plain text to a file
+4. Decode it for Base 64
+cat datakey_plaintext_base64.txt | base64 --decode >dakey_plaintext_decoded.txt
+5. Decrypt the file
+cat <encoded filename > | openssl enc -e -aes256 -k fileb://<filepath>  > ./decrypted.txt
+
