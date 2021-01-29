@@ -2,6 +2,6 @@ aws kms encrypt --region us-east-1 --key-id 6e12016f-afa9-434d-bbf6-66e422b2ab3c
 
 certutil -decode secrets.base64.txt secrets.encrypted.txt
 
-aws kms decrypt --region us-east-1 --ciphertext-blob fileb://secrets.encrypted.txt --output text --query Plaintext > secrets.decrypted.txt
+aws kms decrypt --region us-east-1 --ciphertext-blob fileb://secrets.encrypted.txt --output text --query Plaintext > secrets.decrypted.base64
 
 certutil -decode secrets.decrypted.base64 secrets.decrypted.txt
