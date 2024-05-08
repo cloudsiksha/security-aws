@@ -1,0 +1,17 @@
+User (U1)		Bucket (B1)			Effect		Level
+----------		------------			-------		------
+Access B1		No policy			Allow           User
+No policy		Access U1			Allow		Resource
+Access B1		Deny Not U1			Allow		User
+No policy		Deny not U1			Deny		User
+No policy		No policy			Deny		User
+Deny Not B1		No policy			Deny		User
+Deny Not B1		Allow U1			Allow		Resource
+Deny B1			Allow U1			Deny		Deny
+Allow B1		Deny U1				Deny		Deny
+
+
+User (U1)		Bucket (B1)		Perm Boundary		Effect		Level
+----------		-----------		--------------		-------		-----
+Access B1		No policy		EC2, CloudWatch		Deny		PB
+No policy		Allow U1		EC2, CloudWatch		Allow		Res
